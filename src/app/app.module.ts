@@ -9,13 +9,15 @@ import { SearchInputComponent } from './components/search-input/search-input.com
 import { SonnetComponent } from './components/sonnet/sonnet.component';
 import { SonnetsListComponent } from './components/sonnets-list/sonnets-list.component';
 import { SonnetsService } from './services/sonnets.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchInputComponent,
     SonnetComponent,
-    SonnetsListComponent
+    SonnetsListComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

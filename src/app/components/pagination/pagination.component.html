@@ -1,0 +1,11 @@
+<div class="center form-inline">
+    <button (click)="previous()" type="button" 
+    [attr.disabled]="index==0 ? '' : null" id="previous"
+    class="btn btn-primary btn-sm m-2">Prev</button>
+
+    {{index+1}} / {{listSize}}
+
+    <button (click)="next()" type="button" id="next"
+    [attr.disabled]="index==listSize-1 ? '' : null"
+    class="btn btn-primary btn-sm m-2">Next</button>
+  </div>

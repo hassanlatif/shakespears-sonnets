@@ -11,19 +11,20 @@ import { Sonnet } from '../../models/sonnet';
 export class SonnetsListComponent implements OnInit {
 
   sonnets$ : Observable<Sonnet[]>;
-  pageNum: number;
+  index: number;
 
   constructor(private sonnetsService: SonnetsService) {
     
    }
 
-   pageChanged(event) {
-     console.log(event);
-  
-   }
 
   ngOnInit() {
     this.sonnets$ = this.sonnetsService.getSonnets();
+    this.index = 0;
+  }
+
+  pageChange(pageNo) {
+    console.log(pageNo);
   }
 
 }

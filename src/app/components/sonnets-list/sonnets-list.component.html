@@ -4,9 +4,4 @@
         <br>
 </div>
 
-<div class="center">
- <ngb-pagination [collectionSize]="(sonnets$ | async)?.length" [(page)]="pageNum" 
- [boundaryLinks]="true" [ellipses]="true"  [maxSize]="5" (pageChange)="pageChanged($event)"
- [pageSize]="3">
-</ngb-pagination>
-</div>
+<pagination [listSize]="(sonnets$ | async)?.length" (pageChanged)="pageChange($event)"></pagination>
