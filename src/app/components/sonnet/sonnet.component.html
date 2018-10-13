@@ -1,0 +1,11 @@
+<div class="card" style="width: 28rem;">
+  <div class="card-header">
+    Sonnet # {{sonnet.number}}
+  </div>
+  <div class="card-body">
+    <span *ngFor="let line of sonnet.lines;">
+      {{line}}
+      <br>
+    </span>
+  </div>
+</div>

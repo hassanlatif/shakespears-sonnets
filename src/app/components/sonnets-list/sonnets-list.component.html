@@ -1,0 +1,12 @@
+
+<div class="center" *ngFor="let sonnet of (sonnets$ | async);">
+        <sonnet [sonnet]="sonnet"></sonnet>
+        <br>
+</div>
+
+<div class="center">
+ <ngb-pagination [collectionSize]="(sonnets$ | async)?.length" [(page)]="pageNum" 
+ [boundaryLinks]="true" [ellipses]="true"  [maxSize]="5" (pageChange)="pageChanged($event)"
+ [pageSize]="3">
+</ngb-pagination>
+</div>
