@@ -1,6 +1,5 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppModule } from './app.module';
@@ -13,7 +12,6 @@ describe('AppComponent', () => {
       imports: [
         AppModule,
         HttpClientModule,
-        NgbModule,
         FormsModule,
         ReactiveFormsModule,
       ],

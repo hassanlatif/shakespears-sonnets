@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "shakespears-sonnets"
+  "defaultProject": "shakespears-sonnets",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

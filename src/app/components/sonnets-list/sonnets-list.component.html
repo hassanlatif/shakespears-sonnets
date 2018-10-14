@@ -1,7 +1,7 @@
 
-<div class="center" *ngFor="let sonnet of (sonnets$ | async);">
+<div class="center" *ngFor="let sonnet of sonnets;">
         <sonnet [sonnet]="sonnet"></sonnet>
         <br>
 </div>
 
-<pagination [listSize]="(sonnets$ | async)?.length" (pageChanged)="pageChange($event)"></pagination>
+<pagination [listSize]="sonnets?.length" (pageChanged)="pageChange($event)"></pagination>

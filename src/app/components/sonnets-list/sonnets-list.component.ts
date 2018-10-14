@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SonnetsService } from '../../services/sonnets.service';
 import { Sonnet } from '../../models/sonnet';
@@ -10,16 +10,14 @@ import { Sonnet } from '../../models/sonnet';
 })
 export class SonnetsListComponent implements OnInit {
 
-  sonnets$ : Observable<Sonnet[]>;
+  @Input() sonnets;
   index: number;
 
-  constructor(private sonnetsService: SonnetsService) {
+  constructor() {
     
    }
 
-
   ngOnInit() {
-    this.sonnets$ = this.sonnetsService.getSonnets();
     this.index = 0;
   }
 

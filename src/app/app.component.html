@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <div class="col m-2">
-      <sonnets-list></sonnets-list>
+      <sonnets-list [sonnets]="(sonnets$ | async)"></sonnets-list>
     </div>
   </div>
 </div>
