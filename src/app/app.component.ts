@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sonnet } from './models/sonnet';
 import { SonnetsService } from './services/sonnets.service';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppState } from './store';
-import { LoadSonnets } from './store/sonnets/sonnet/sonnet.actions';
+import { AllSonnetsRequested } from './store/sonnets/sonnets.actions';
+import { selectSonnetByNumber, selectAllSonnets } from './store/sonnets/sonnets.selectors';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,18 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.store.dispatch(new LoadSonnets());
-    this.sonnets$ = this.sonnetService.getSonnets();
+
+    // this.store.dispatch(new LoadSonnets());
+    // this.sonnets$ = this.sonnetService.getSonnets();
+
+    this.store.dispatch(new AllSonnetsRequested());
+
+    
+    this.sonnets$ = this.store
+    .pipe(
+      select(selectAllSonnets)
+    );
+
   }
 
 }

@@ -14,6 +14,8 @@ import { reducers, metaReducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import * as fromSonnets from './store/sonnets/sonnets.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { SonnetsEffects } from './store/sonnets/sonnets.effects';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,10 @@ import * as fromSonnets from './store/sonnets/sonnets.reducer';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    StoreModule.forFeature('sonnets', fromSonnets.reducer),    
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature('sonnets', fromSonnets.sonnetsReducer),
+    EffectsModule.forFeature([SonnetsEffects]),    
+    !environment.production ? StoreDevtoolsModule.instrument() : [], 
   ],
   bootstrap: [AppComponent]
 })
