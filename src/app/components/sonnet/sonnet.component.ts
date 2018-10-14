@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Sonnet } from '../../models/sonnet';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store';
+import { SonnetSaved } from '../../store/sonnets/sonnets.actions';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'sonnet',
@@ -13,7 +17,8 @@ export class SonnetComponent implements OnInit {
   editMode: boolean;
   sonnetForm: FormGroup;
 
-  constructor() {
+  constructor(private store: Store<AppState>) {
+
   }
 
   ngOnInit() {
@@ -30,5 +35,17 @@ export class SonnetComponent implements OnInit {
 
   toggleEditMode() {
     this.editMode = !this.editMode;
+  }
+
+  saveSonnet(id: string) {
+    console.log(id);
+    const sonnet: Update<Sonnet> = {
+      id: id,
+      changes: {
+        lines: this.sonnetForm.value.lines
+      }
+    }
+    this.store.dispatch(new SonnetSaved({sonnet}))
+    
   }
 }

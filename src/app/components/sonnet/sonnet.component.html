@@ -2,7 +2,7 @@
   <div class="card-header">
     Sonnet # {{sonnet.number}}
     <span *ngIf="!editMode" id="pencil" (click)="toggleEditMode()" style="float: right; cursor: pointer;">&#9998;</span>
-    <span *ngIf="editMode" id="check" (click)="toggleEditMode()" style="float: right; cursor: pointer;">&#10003;</span>
+    <span *ngIf="editMode" id="check" (click)="toggleEditMode(); saveSonnet(sonnet.number)" style="float: right; cursor: pointer;">&#10003;</span>
   </div>
   <div class="card-body">
     <div *ngIf="editMode" [formGroup]="sonnetForm">

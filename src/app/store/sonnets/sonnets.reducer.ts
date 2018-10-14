@@ -22,7 +22,11 @@ export function sonnetsReducer(state = initialState, action: SonnetActions): Son
   switch (action.type) {
 
     case SonnetActionTypes.AllSonnetsLoaded:
-      return adapter.addAll(action.payload, {...state, allSonnetsLoaded: true})
+      return adapter.addAll(action.payload, {...state, allSonnetsLoaded: true});
+
+    case SonnetActionTypes.SonnetSaved:
+      return adapter.updateOne(action.payload.sonnet, state);
+    
     default:
       return state;
   }

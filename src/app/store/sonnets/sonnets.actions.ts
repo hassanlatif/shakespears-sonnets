@@ -1,11 +1,13 @@
 import { Action } from '@ngrx/store';
 import { Sonnet } from '../../models/sonnet';
+import { Update } from '@ngrx/entity';
 
 export enum SonnetActionTypes {
   AllSonnetsRequested = '[Sonnets List Page] All Sonnets Requested',
   AllSonnetsLoaded = '[Sonnets API] All Sonnets Loaded',
   SonnetRequested = '[Sonnet Page] Sonnet Requested',
-  SonnetsRequested = '[Sonnet Page] Sonnets Requested'
+  SonnetsRequested = '[Sonnet Page] Sonnets Requested',
+  SonnetSaved = '[Edit Sonnet Form] Sonnet Saved'
 }
 
 export class AllSonnetsRequested implements Action {
@@ -19,6 +21,12 @@ export class AllSonnetsLoaded implements Action {
   }
 }
 
+export class SonnetSaved implements Action {
+   readonly type = SonnetActionTypes.SonnetSaved;
+
+   constructor(public payload: {sonnet: Update<Sonnet>}) {}
+}
+
 export class SonnetRequested implements Action {
   readonly type = SonnetActionTypes.SonnetRequested;
    constructor(public payload: {number:number}) {}
@@ -30,4 +38,6 @@ export class SonnetsRequested implements Action {
 }
 
 
-export type SonnetActions = AllSonnetsRequested | AllSonnetsLoaded | SonnetRequested | SonnetsRequested;
+export type SonnetActions = AllSonnetsRequested 
+| AllSonnetsLoaded | SonnetRequested 
+| SonnetsRequested | SonnetSaved;
