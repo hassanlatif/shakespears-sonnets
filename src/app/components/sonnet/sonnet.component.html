@@ -1,11 +1,22 @@
 <div class="card" style="width: 28rem;">
   <div class="card-header">
     Sonnet # {{sonnet.number}}
+    <span *ngIf="!editMode" id="pencil" (click)="toggleEditMode()" style="float: right; cursor: pointer;">&#9998;</span>
+    <span *ngIf="editMode" id="check" (click)="toggleEditMode()" style="float: right; cursor: pointer;">&#10003;</span>
   </div>
   <div class="card-body">
-    <span *ngFor="let line of sonnet.lines;">
-      {{line}}
+    <div *ngIf="editMode" [formGroup]="sonnetForm">
+      <div formArrayName="lines">
+      <div *ngFor="let line of sonnetLinesArray.controls; let i=index;">
+        <input type="text" formControlName="{{i}}" class="form-control">
+      </div>
+    </div>
+    </div>
+    <div *ngIf="!editMode">
+    <span *ngFor="let line of sonnetLinesArray.controls;">
+      {{line.value}}
       <br>
     </span>
+  </div>
   </div>
 </div>

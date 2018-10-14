@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SonnetsService } from '../../services/sonnets.service';
 
@@ -17,7 +17,8 @@ describe('SonnetsListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SonnetsListComponent, SonnetComponent, PaginationComponent ],
-      imports: [NgbModule, HttpClientModule]
+      imports: [HttpClientModule, FormsModule, ReactiveFormsModule]
+
     })
     .compileComponents();
   }));

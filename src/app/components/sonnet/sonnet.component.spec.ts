@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SonnetComponent } from './sonnet.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('SonnetComponent', () => {
   let component: SonnetComponent;
@@ -8,7 +9,8 @@ describe('SonnetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SonnetComponent ]
+      declarations: [ SonnetComponent ],
+      imports: [FormsModule, ReactiveFormsModule]
     })
     .compileComponents();
   }));
@@ -20,7 +22,7 @@ describe('SonnetComponent', () => {
     fixture.detectChanges();
   });
 
-  it(`should have a sonnet`, () => {
+  it('should have a sonnet', () => {
     fixture.detectChanges();
     expect(component.sonnet).toBeDefined();
   });
@@ -29,4 +31,28 @@ describe('SonnetComponent', () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
+
+  it('should contain a form with two contorls', () => {
+    expect(component.sonnetForm.contains('number')).toBeTruthy();
+    expect(component.sonnetForm.contains('lines')).toBeTruthy();
+  })
+
+  it('should toggle edit mode when pencil is pressed', () => {
+    component.editMode = false;
+    fixture.detectChanges();    
+    let editBtn = fixture.debugElement.nativeElement.querySelector('#pencil');
+    editBtn.click();
+    expect(component.editMode).toBeTruthy();
+
+  });
+
+  it('should untoggle edit mode when check is pressed', () => {
+    component.editMode = true;
+    fixture.detectChanges();
+    let okBtn = fixture.debugElement.nativeElement.querySelector('#check');
+    okBtn.click();
+    expect(component.editMode).toBeFalsy();
+
+  });  
+
 });

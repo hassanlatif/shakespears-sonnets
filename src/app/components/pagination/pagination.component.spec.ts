@@ -26,7 +26,6 @@ describe('PaginationComponent', () => {
 
   it('should increment index when next is pressed', () => {
     let nextBtn = fixture.debugElement.nativeElement.querySelector('#next');
-    console.log(nextBtn);
     nextBtn.click();
     expect(component.index).toBe(1);
 
@@ -34,10 +33,8 @@ describe('PaginationComponent', () => {
 
   it('should decrement index when previous is pressed', () => {
     let prevBtn = fixture.debugElement.nativeElement.querySelector('#previous');
-    console.log(prevBtn);
     prevBtn.click();
     expect(component.index).toBe(0);
-
   });  
 
 });
