@@ -13,3 +13,8 @@ export const selectAllSonnets = createSelector(
     selectSonnetsState,
     fromSonnets.selectAll
 )
+
+export const allSonnetsLoaded = createSelector(
+    selectSonnetsState,
+    sonnetsState => sonnetsState.allSonnetsLoaded
+)

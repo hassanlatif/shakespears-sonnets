@@ -4,6 +4,7 @@ import { SonnetActions, SonnetActionTypes } from './sonnets.actions';
 import { EntityState, createEntityAdapter, EntityAdapter} from '@ngrx/entity';
 
 export interface SonnetsState extends EntityState<Sonnet> {
+  allSonnetsLoaded: boolean;
 }
 
 export const adapter: EntityAdapter<Sonnet> = createEntityAdapter<Sonnet>(
@@ -12,14 +13,16 @@ export const adapter: EntityAdapter<Sonnet> = createEntityAdapter<Sonnet>(
   }
 );
 
-export const initialState: SonnetsState = adapter.getInitialState();
+export const initialState: SonnetsState = adapter.getInitialState({
+  allSonnetsLoaded: false
+});
 
 export function sonnetsReducer(state = initialState, action: SonnetActions): SonnetsState  {
 
   switch (action.type) {
 
     case SonnetActionTypes.AllSonnetsLoaded:
-      return adapter.addAll(action.payload, state)
+      return adapter.addAll(action.payload, {...state, allSonnetsLoaded: true})
     default:
       return state;
   }
