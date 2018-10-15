@@ -1,7 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SonnetsService } from '../../services/sonnets.service';
-import { Sonnet } from '../../models/sonnet';
+import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'sonnets-list',
@@ -14,15 +11,14 @@ export class SonnetsListComponent implements OnInit {
   index: number;
 
   constructor() {
-    
    }
 
   ngOnInit() {
     this.index = 0;
   }
-
+  
   pageChange(pageNo) {
-    console.log(pageNo);
+    this.index = pageNo;
   }
 
 }

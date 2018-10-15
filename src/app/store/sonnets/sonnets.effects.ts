@@ -5,7 +5,7 @@ import { SonnetsService } from '../../services/sonnets.service';
 import { mergeMap, map, withLatestFrom, filter } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '..';
-import { allSonnetsLoaded } from './sonnets.selectors';
+import { isAllSonnetsLoaded } from './sonnets.selectors';
 
 @Injectable()
 export class SonnetsEffects {
@@ -14,7 +14,7 @@ export class SonnetsEffects {
   loadAllSonnets$ = this.actions$
   .pipe(
     ofType<AllSonnetsRequested>(SonnetActionTypes.AllSonnetsRequested),
-    withLatestFrom(this.store.pipe(select(allSonnetsLoaded))),
+    withLatestFrom(this.store.pipe(select(isAllSonnetsLoaded))),
     filter(([action, allSonnetsLoaded])=> !allSonnetsLoaded ),
     mergeMap(action => this.sonnetsService.getSonnets()),
     map(sonnets => new AllSonnetsLoaded(sonnets))

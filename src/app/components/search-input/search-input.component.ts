@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store';
+import { SearchSonnetsRequested } from '../../store/sonnets/sonnets.actions';
+
 
 @Component({
   selector: 'search-input',
@@ -8,15 +12,16 @@ import { Component, OnInit } from '@angular/core';
 export class SearchInputComponent implements OnInit {
 
   searchTerm: string;
+  @Output() onSearchInput: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
   }
 
   handleKey(event: any) {
     if (event.keyCode === 13) {
-      console.log(this.searchTerm);
+      this.onSearchInput.emit(this.searchTerm);
       this.searchTerm = '';
     }
   }

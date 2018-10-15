@@ -7,7 +7,9 @@ export enum SonnetActionTypes {
   AllSonnetsLoaded = '[Sonnets API] All Sonnets Loaded',
   SonnetRequested = '[Sonnet Page] Sonnet Requested',
   SonnetsRequested = '[Sonnet Page] Sonnets Requested',
-  SonnetSaved = '[Edit Sonnet Form] Sonnet Saved'
+  SonnetSaved = '[Edit Sonnet Form] Sonnet Saved',
+  SearchSonnetsRequested = '[Sonnet Search Input] Search for Sonnets Requested'
+
 }
 
 export class AllSonnetsRequested implements Action {
@@ -17,14 +19,17 @@ export class AllSonnetsRequested implements Action {
 export class AllSonnetsLoaded implements Action {
   readonly type = SonnetActionTypes.AllSonnetsLoaded;
   constructor(public payload: Sonnet[]) {
-    
   }
 }
 
 export class SonnetSaved implements Action {
    readonly type = SonnetActionTypes.SonnetSaved;
-
    constructor(public payload: {sonnet: Update<Sonnet>}) {}
+}
+
+export class SearchSonnetsRequested implements Action {
+  readonly type = SonnetActionTypes.SearchSonnetsRequested;
+  constructor(public payload: {term: string}) {}
 }
 
 export class SonnetRequested implements Action {

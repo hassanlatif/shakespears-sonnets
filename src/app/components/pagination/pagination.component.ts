@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnChanges {
 
   @Input() listSize: number;
   index: number;
@@ -15,6 +15,11 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit() {
     this.index=0;
+  }
+
+  ngOnChanges(changes:SimpleChanges) {
+    this.index = 0;
+    this.pageChanged.emit(this.index);    
   }
 
   previous() {

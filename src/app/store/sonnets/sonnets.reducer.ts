@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Sonnet } from '../../models/sonnet';
 import { SonnetActions, SonnetActionTypes } from './sonnets.actions';
-import { EntityState, createEntityAdapter, EntityAdapter} from '@ngrx/entity';
+import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
 export interface SonnetsState extends EntityState<Sonnet> {
   allSonnetsLoaded: boolean;
@@ -17,16 +17,16 @@ export const initialState: SonnetsState = adapter.getInitialState({
   allSonnetsLoaded: false
 });
 
-export function sonnetsReducer(state = initialState, action: SonnetActions): SonnetsState  {
+export function sonnetsReducer(state = initialState, action: SonnetActions): SonnetsState {
 
   switch (action.type) {
 
     case SonnetActionTypes.AllSonnetsLoaded:
-      return adapter.addAll(action.payload, {...state, allSonnetsLoaded: true});
+      return adapter.addAll(action.payload, { ...state, allSonnetsLoaded: true });
 
     case SonnetActionTypes.SonnetSaved:
       return adapter.updateOne(action.payload.sonnet, state);
-    
+
     default:
       return state;
   }
