@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sonnet } from './models/sonnet';
-import { SonnetsService } from './services/sonnets.service';
 import { Store, select } from '@ngrx/store';
 import { AppState } from './store';
 import { AllSonnetsRequested } from './store/sonnets/sonnets.actions';
@@ -17,7 +16,7 @@ export class AppComponent implements OnInit {
 
   sonnets$: Observable<Sonnet[]>;
 
-  constructor(private sonnetService: SonnetsService, private store: Store<AppState>) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
 <div class="form-group center" style="width: 28rem;">
   <label for="searchTerm">Search Shakespear's sonnets</label>
-  <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" 
-  (keydown)="handleKey($event)" placeholder="Enter search term">
+  <input type="text" class="form-control" id="searchTerm" #searchTerm
+  (keyup.enter)="searchEnteredTerm(searchTerm.value)" placeholder="Enter search term">
 </div>

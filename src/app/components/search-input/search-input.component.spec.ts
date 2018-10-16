@@ -28,17 +28,17 @@ describe('SearchInputComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should clear search  when pressed enter', async(() => {
+  it('should emit search term when pressed enter', async(() => {
 
-    spyOn(component, "handleKey");
-    let searchInput = fixture.debugElement.nativeElement.querySelector('input');
-    const event = new KeyboardEvent("keydown", {
-      "key": "Enter"
+    spyOn(component.onSearchInputEntered, "emit");
+    const searchInput = fixture.debugElement.nativeElement.querySelector('input');
+    searchInput.value = "Test";
+    const event = new KeyboardEvent("keyup", {
+      key: "Enter",
     });
     searchInput.dispatchEvent(event);
-    fixture.whenStable().then(() => {    
-      expect(searchInput.value).toBe("");
-    });
+    fixture.detectChanges();
+    expect(component.onSearchInputEntered.emit).toHaveBeenCalledWith("Test");
 
   }));
 });

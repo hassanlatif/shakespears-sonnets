@@ -16,7 +16,6 @@ describe('PaginationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
-    component.listSize = 10;
     fixture.detectChanges();
   });
 
@@ -36,5 +35,28 @@ describe('PaginationComponent', () => {
     prevBtn.click();
     expect(component.index).toBe(0);
   });  
+
+  it('should disable previous button when start of list)', () => {
+    let prevBtn = fixture.debugElement.nativeElement.querySelector('#previous');
+    component.index = 0;
+    fixture.detectChanges();
+    expect(prevBtn.disabled).toBeTruthy();
+  });
+
+  it('should disable next butten when end of list', () => {
+    let nextBtn = fixture.debugElement.nativeElement.querySelector('#next');
+    component.listSize = 10;
+    component.index = 9;
+    fixture.detectChanges();
+    expect(nextBtn.disabled).toBeTruthy();
+  });
+
+  it('should disable next butten when empty list', () => {
+    let nextBtn = fixture.debugElement.nativeElement.querySelector('#next');
+    component.listSize = 0;
+    fixture.detectChanges();
+    expect(nextBtn.disabled).toBeTruthy();
+  });
+
 
 });

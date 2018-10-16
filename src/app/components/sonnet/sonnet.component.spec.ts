@@ -24,13 +24,8 @@ describe('SonnetComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SonnetComponent);
     component = fixture.componentInstance;
-    component.sonnet = {number: "1", lines:["abc"]};
+    component.sonnet = {number: "1", lines:["abc", "def", "ghi"]};
     fixture.detectChanges();
-  });
-
-  it('should have a sonnet', () => {
-    fixture.detectChanges();
-    expect(component.sonnet).toBeDefined();
   });
 
   it('should create', () => {
@@ -38,8 +33,7 @@ describe('SonnetComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain a form with two contorls', () => {
-    expect(component.sonnetForm.contains('number')).toBeTruthy();
+  it('should contain a form with lines control', () => {
     expect(component.sonnetForm.contains('lines')).toBeTruthy();
   })
 

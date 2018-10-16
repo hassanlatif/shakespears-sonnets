@@ -33,17 +33,6 @@ describe('SonnetsListComponent', () => {
     expect(component).toBeTruthy();
   });
   
-  
-  // it('should load sonnets', async(() => {
-    
-  //   let service = TestBed.get(SonnetsService);
-  //   spyOn(service, 'getSonnets').and.returnValue(from([ {number: "1", lines:["hello"]} ]));
-  //   fixture.detectChanges();
 
-  //   fixture.whenStable().then(() => { 
-  //     component.sonnets.subscribe(result => expect(result.length).toBeGreaterThan(0));
-  //   });
-
-  // }));
 
 });
