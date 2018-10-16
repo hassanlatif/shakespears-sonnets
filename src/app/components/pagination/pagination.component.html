@@ -3,9 +3,9 @@
     [attr.disabled]="index==0 ? '' : null" id="previous"
     class="btn btn-primary btn-sm m-2">Prev</button>
 
-    {{index+1}} / {{listSize}}
+    {{index+1}} / {{listSize==0 ? 1 : listSize}}
 
     <button (click)="next()" type="button" id="next"
-    [attr.disabled]="index==listSize-1 ? '' : null"
+    [attr.disabled]="(listSize==0 || index==listSize-1)  ? '' : null"
     class="btn btn-primary btn-sm m-2">Next</button>
   </div>

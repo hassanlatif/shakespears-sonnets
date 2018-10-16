@@ -3,6 +3,9 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { SonnetsEffects } from './sonnets.effects';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from '..';
 
 describe('SonnetsEffects', () => {
   let actions$: Observable<any>;
@@ -10,6 +13,7 @@ describe('SonnetsEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule,  StoreModule.forRoot(reducers, { metaReducers })],
       providers: [
         SonnetsEffects,
         provideMockActions(() => actions$)

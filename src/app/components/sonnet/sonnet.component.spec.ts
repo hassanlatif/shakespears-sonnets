@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SonnetComponent } from './sonnet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule, Store } from '@ngrx/store';
+import { reducers, metaReducers } from '../../store';
+
 
 describe('SonnetComponent', () => {
   let component: SonnetComponent;
@@ -10,7 +13,10 @@ describe('SonnetComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SonnetComponent ],
-      imports: [FormsModule, ReactiveFormsModule]
+      imports: [FormsModule, ReactiveFormsModule,
+        StoreModule.forRoot(reducers, { metaReducers })],
+        providers: [Store]
+
     })
     .compileComponents();
   }));

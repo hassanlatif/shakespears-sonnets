@@ -22,7 +22,6 @@ export class SearchInputComponent implements OnInit {
   handleKey(event: any) {
     if (event.keyCode === 13) {
       this.onSearchInput.emit(this.searchTerm);
-      this.searchTerm = '';
     }
   }
 

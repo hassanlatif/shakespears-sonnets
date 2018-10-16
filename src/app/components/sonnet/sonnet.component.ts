@@ -18,16 +18,22 @@ export class SonnetComponent implements OnInit, OnChanges {
   sonnetForm: FormGroup;
 
   constructor(private store: Store<AppState>) {
+    
   }
 
   ngOnInit() {
-  }
-
-  ngOnChanges(change: SimpleChanges) {
     this.sonnetForm = new FormGroup({
       'number': new FormControl(this.sonnet.number),
       'lines': new FormArray(this.sonnet.lines.map(line => new FormControl(line)))
-    });
+    });    
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    if (this.sonnetForm!=undefined) {
+      this.sonnetForm.get('number').setValue(this.sonnet.number);
+      this.sonnetForm.get('lines').setValue(this.sonnet.lines);
+    }
   }
 
   get sonnetLinesArray(): FormArray {

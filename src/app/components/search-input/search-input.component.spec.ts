@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchInputComponent } from './search-input.component';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+
+import { reducers, metaReducers } from '../../store';
 
 describe('SearchInputComponent', () => {
   let component: SearchInputComponent;
@@ -10,7 +13,7 @@ describe('SearchInputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SearchInputComponent],
-      imports: [FormsModule]
+      imports: [FormsModule, StoreModule.forRoot(reducers, { metaReducers })]
     })
       .compileComponents();
   }));
