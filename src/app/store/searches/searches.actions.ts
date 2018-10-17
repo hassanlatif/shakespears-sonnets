@@ -7,10 +7,10 @@ export enum SearchActionTypes {
 
 }
 
-export class saveSearchRequested implements Action {
+export class SaveSearchRequested implements Action {
   readonly type = SearchActionTypes.SAVE_SEARCH_REQUESTED;
   constructor(public payload: Search) {}
 }
 
 
-export type SearchesActions = saveSearchRequested;
+export type SearchesActions = SaveSearchRequested;

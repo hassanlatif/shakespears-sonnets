@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from './store';
 import { AllSonnetsRequested } from './store/sonnets/sonnets.actions';
 import { selectAllSonnets, searchSonnets } from './store/sonnets/sonnets.selectors';
-import { saveSearchRequested } from './store/searches/searches.actions';
+import { SaveSearchRequested } from './store/searches/searches.actions';
 import { tap, switchMap, map } from 'rxjs/operators';
 import { Search } from './models/search';
 import { selectCachedSonnets } from './store/searches/searches.selectors';
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
               select(searchSonnets(searchTerm)),
               tap(sonnets => {
                 if (sonnets.length > 0) {
-                  this.store.dispatch(new saveSearchRequested({
+                  this.store.dispatch(new SaveSearchRequested({
                     term: searchTerm,
                     sonnets: sonnets
                   }))
