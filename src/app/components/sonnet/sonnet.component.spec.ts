@@ -46,13 +46,4 @@ describe('SonnetComponent', () => {
 
   });
 
-  it('should untoggle edit mode when check is pressed', () => {
-    component.editMode = true;
-    fixture.detectChanges();
-    let okBtn = fixture.debugElement.nativeElement.querySelector('#check');
-    okBtn.click();
-    expect(component.editMode).toBeFalsy();
-
-  });  
-
 });

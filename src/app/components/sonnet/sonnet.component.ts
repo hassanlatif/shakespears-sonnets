@@ -1,15 +1,17 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Sonnet } from '../../models/sonnet';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
-import { SonnetSaved } from '../../store/sonnets/sonnets.actions';
+import { SaveSonnetRequested } from '../../store/sonnets/sonnets.actions';
 import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'sonnet',
   templateUrl: './sonnet.component.html',
-  styleUrls: ['./sonnet.component.scss']
+  styleUrls: ['./sonnet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class SonnetComponent implements OnInit, OnChanges {
 
@@ -18,18 +20,18 @@ export class SonnetComponent implements OnInit, OnChanges {
   sonnetForm: FormGroup;
 
   constructor(private store: Store<AppState>) {
-    
+
   }
 
   ngOnInit() {
     this.sonnetForm = new FormGroup({
       'lines': new FormArray(this.sonnet.lines.map(line => new FormControl(line)))
-    });    
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
 
-    if (this.sonnetForm!=undefined) {
+    if (this.sonnetForm) {
       this.sonnetForm.get('lines').setValue(this.sonnet.lines);
     }
   }
@@ -50,7 +52,7 @@ export class SonnetComponent implements OnInit, OnChanges {
       }
     }
 
-    this.store.dispatch(new SonnetSaved({ sonnet }));
+    this.store.dispatch(new SaveSonnetRequested({ sonnet }));
 
   }
 }

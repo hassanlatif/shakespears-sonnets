@@ -21,10 +21,10 @@ export function sonnetsReducer(state = initialState, action: SonnetActions): Son
 
   switch (action.type) {
 
-    case SonnetActionTypes.AllSonnetsLoaded:
+    case SonnetActionTypes.ALL_SONNETS_LOADED:
       return adapter.addAll(action.payload, { ...state, allSonnetsLoaded: true });
 
-    case SonnetActionTypes.SonnetSaved:
+    case SonnetActionTypes.SAVE_SONNET_REQUESTED:
       return adapter.updateOne(action.payload.sonnet, state);
 
     default:
