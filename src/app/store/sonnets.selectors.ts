@@ -1,8 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { SonnetsState } from './sonnets.reducer';
-import * as fromSonnets from './sonnets.reducer'
+import { SonnetsState } from './sonnets/sonnets.reducer';
+import * as fromSonnets from './sonnets/sonnets.reducer';
+import * as fromSearches from './searches/searches.reducer';
+import { SearchesState } from './searches/searches.reducer';
 
 export const selectSonnetsState = createFeatureSelector<SonnetsState>("sonnets");
+export const selectSearchesState = createFeatureSelector<SearchesState>("searches");
+
 
 export const selectAllSonnets = createSelector(
     selectSonnetsState,
@@ -17,4 +21,9 @@ export const isAllSonnetsLoaded = createSelector(
 export const searchSonnets = (term:string) => createSelector(
     selectAllSonnets,
     sonnetsState => sonnetsState.filter(sonnet=> sonnet.lines.toString().includes(term))
+);
+
+export const selectAllCachedSonnets = createSelector(
+    selectSearchesState,
+    fromSearches.selectAll
 );

@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import * as fromSonnets from './store/sonnets/sonnets.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SonnetsEffects } from './store/sonnets/sonnets.effects';
+import * as fromSearches from './store/searches/searches.reducer';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,10 @@ import { SonnetsEffects } from './store/sonnets/sonnets.effects';
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     StoreModule.forFeature('sonnets', fromSonnets.sonnetsReducer),
+    StoreModule.forFeature('searches', fromSearches.searchesReducer), 
     EffectsModule.forFeature([SonnetsEffects]),    
     !environment.production ? StoreDevtoolsModule.instrument() : [], 
+    
   ],
   bootstrap: [AppComponent]
 })
