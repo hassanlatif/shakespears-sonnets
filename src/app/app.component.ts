@@ -4,10 +4,11 @@ import { Sonnet } from './models/sonnet';
 import { Store, select } from '@ngrx/store';
 import { AppState } from './store';
 import { AllSonnetsRequested } from './store/sonnets/sonnets.actions';
-import { selectAllSonnets, searchSonnets, selectCachedSonnets } from './store/sonnets.selectors';
+import { selectAllSonnets, searchSonnets } from './store/sonnets/sonnets.selectors';
 import { saveSearchRequested } from './store/searches/searches.actions';
 import { tap, switchMap, map } from 'rxjs/operators';
 import { Search } from './models/search';
+import { selectCachedSonnets } from './store/searches/searches.selectors';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,6 @@ export class AppComponent implements OnInit {
   }
 
   searchRequested(searchTerm) {
-
     const tempSearch: Search = {
       term: searchTerm,
       sonnets: []

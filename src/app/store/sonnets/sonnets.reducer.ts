@@ -24,7 +24,7 @@ export function sonnetsReducer(state = initialState, action: SonnetActions): Son
     case SonnetActionTypes.ALL_SONNETS_LOADED:
       return adapter.addAll(action.payload, { ...state, allSonnetsLoaded: true });
 
-    case SonnetActionTypes.SONNET_SAVED:
+    case SonnetActionTypes.SAVE_SONNET_REQUESTED:
       return adapter.updateOne(action.payload.sonnet, state);
 
     default:

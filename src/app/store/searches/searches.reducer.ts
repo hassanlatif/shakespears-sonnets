@@ -3,7 +3,6 @@ import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Search } from '../../models/search';
 import { SearchActionTypes, SearchesActions } from './searches.actions';
 
-
 export interface SearchesState extends EntityState<Search> {
 }
 
@@ -17,7 +16,7 @@ export const initialState: SearchesState = adapter.getInitialState();
 
 export function searchesReducer(state = initialState, action: SearchesActions): SearchesState {
   switch (action.type) {
-
+    
     case SearchActionTypes.SAVE_SEARCH_REQUESTED:
      return adapter.addOne(action.payload, state);
 
@@ -25,7 +24,6 @@ export function searchesReducer(state = initialState, action: SearchesActions): 
       return state;
   }
 }
-
 
 export const {
   selectAll,

@@ -3,7 +3,7 @@ import { Sonnet } from '../../models/sonnet';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
-import { SonnetSaved } from '../../store/sonnets/sonnets.actions';
+import { SaveSonnetRequested } from '../../store/sonnets/sonnets.actions';
 import { Update } from '@ngrx/entity';
 
 @Component({
@@ -52,7 +52,7 @@ export class SonnetComponent implements OnInit, OnChanges {
       }
     }
 
-    this.store.dispatch(new SonnetSaved({ sonnet }));
+    this.store.dispatch(new SaveSonnetRequested({ sonnet }));
 
   }
 }
