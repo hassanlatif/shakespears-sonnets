@@ -20,10 +20,31 @@ export const isAllSonnetsLoaded = createSelector(
 
 export const searchSonnets = (term:string) => createSelector(
     selectAllSonnets,
-    sonnetsState => sonnetsState.filter(sonnet=> sonnet.lines.toString().includes(term))
+    sonnetsState => {
+        // console.log(term, sonnetsState);
+        
+        return sonnetsState.filter(sonnet=> sonnet.lines.toString().includes(term))
+    }
 );
 
 export const selectAllCachedSonnets = createSelector(
     selectSearchesState,
-    fromSearches.selectAll
+    fromSearches.selectEntities
 );
+
+export const selectCachedSonnets = (term: string) => createSelector(
+    selectAllCachedSonnets,
+    searchState => {
+        // console.log(searchState);
+        
+        if (searchState[term]) {
+            return searchState[term]
+        }            
+        else {
+            return {
+                term: term,
+                sonnets: []
+            }
+        }
+    }
+)

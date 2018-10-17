@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Sonnet } from '../../models/sonnet';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -9,7 +9,9 @@ import { Update } from '@ngrx/entity';
 @Component({
   selector: 'sonnet',
   templateUrl: './sonnet.component.html',
-  styleUrls: ['./sonnet.component.scss']
+  styleUrls: ['./sonnet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class SonnetComponent implements OnInit, OnChanges {
 

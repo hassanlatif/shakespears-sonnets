@@ -5,7 +5,6 @@ import { SearchActionTypes, SearchesActions } from './searches.actions';
 
 
 export interface SearchesState extends EntityState<Search> {
-
 }
 
 export const adapter: EntityAdapter<Search> = createEntityAdapter<Search>(

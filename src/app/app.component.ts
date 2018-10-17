@@ -1,12 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Sonnet } from './models/sonnet';
 import { Store, select } from '@ngrx/store';
 import { AppState } from './store';
 import { AllSonnetsRequested } from './store/sonnets/sonnets.actions';
-import { selectAllSonnets, searchSonnets } from './store/sonnets.selectors';
+import { selectAllSonnets, searchSonnets, selectCachedSonnets } from './store/sonnets.selectors';
 import { saveSearchRequested } from './store/searches/searches.actions';
-import { tap } from 'rxjs/operators';
+import { tap, switchMap, map } from 'rxjs/operators';
+import { Search } from './models/search';
 
 @Component({
   selector: 'app-root',
@@ -30,19 +31,35 @@ export class AppComponent implements OnInit {
   }
 
   searchRequested(searchTerm) {
+
+    const tempSearch: Search = {
+      term: searchTerm,
+      sonnets: []
+    }
+
     this.sonnets$ = this.store
       .pipe(
-        select(searchSonnets(searchTerm)),
-        
-        tap(sonnets => {
-          if (sonnets.length > 0) {
-            this.store.dispatch(new saveSearchRequested({
-              term: searchTerm,
-              sonnets: sonnets
-            }))
+        select(selectCachedSonnets(searchTerm)),
+        map(search => search.sonnets),
+        switchMap(sonnets => {
+          if (sonnets.length> 0) {
+            return of(sonnets);
+          } else {
+            return this.store.pipe(
+              select(searchSonnets(searchTerm)),
+              tap(sonnets => {
+                if (sonnets.length > 0) {
+                  this.store.dispatch(new saveSearchRequested({
+                    term: searchTerm,
+                    sonnets: sonnets
+                  }))
+                }
+              })
+            )
           }
-        }
-      ))
+        })
+      );
+
   }
 
 }
